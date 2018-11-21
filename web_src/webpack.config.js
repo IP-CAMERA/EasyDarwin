@@ -168,4 +168,21 @@ if (process.env.NODE_ENV == "production") {
             }
         })
     ])
+}else{
+    module.exports.plugins = (module.exports.plugins || []).concat([
+        new CleanWebpackPlugin(['www'], {
+            root: resolve("../")
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"development"'
+            }
+        }),
+        new OptimizeCssAssetsPlugin({
+            assetNameRegExp: /\.css$/g,
+            cssProcessor: require('cssnano'),
+            cssProcessorOptions: { discardComments: { removeAll: true } },
+            canPrint: true
+        })
+    ])
 }

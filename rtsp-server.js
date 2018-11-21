@@ -25,10 +25,15 @@ class RTSPServer extends events.EventEmitter {
     start() {
         this.server.listen(this.port);
         this.stats();
+        this.api();
     }
 
     stats() {
         require('routes/stats').rtspServer = this;
+    }
+
+    api() {
+        require('routes/api').rtspServer = this;
     }
 
     addSession(session) {

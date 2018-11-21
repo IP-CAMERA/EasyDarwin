@@ -53,6 +53,8 @@ class HTTPServer extends events.EventEmitter {
         this.app.use("/user", require('routes/user'));
         this.app.use("/stats", require('routes/stats'));
 
+
+        this.app.use("/api", require('routes/api'));
         //exception handle
         this.app.use((e, req, res, next) => {
             var files = req.files || [];
